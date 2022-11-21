@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+option csharp_namespace = "Vtb.Grpc.Base.Service";
+import "google/protobuf/empty.proto";
+package common;
+
+message Entity
+{
+    int32 entityType = 1;
+    message ArrayItem
+    {
+        oneof Value
+        {
+            double AsDouble = 2;
+            int32 AsInteger = 3;
+            int64 AsLong = 4;
+            bool AsBool = 5;
+            string AsString = 6;            
+            Entity AsEntity = 8;
+            uint32 AsChar = 9;
+        }
+    }
+    message Array
+    {
+        repeated ArrayItem Items = 1;
+    }
+    message Field
+    {
+        int32 Number = 1;
+        oneof Value
+        {
+            double AsDouble = 2;
+            int32 AsInteger = 3;
+            int64 AsLong = 4;
+            bool AsBool = 5;
+            string AsString = 6;            
+            Array AsArray = 7;
+            Entity AsEntity = 8;
+            uint32 AsChar = 9;
+            int64 AsDateTime = 10;
+        }
+    }
+    repeated Field fields = 2;
+}

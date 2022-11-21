@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option csharp_namespace = "Vtb.Grpc.Base.Service";
+import "google/protobuf/empty.proto";
+import "common.proto";
+package main;
+
+service Main {
+  rpc Command (Entity) returns (google.protobuf.Empty);
+  rpc Query (Entity) returns (Entity);
+  rpc Outcome (stream Entity) returns (google.protobuf.Empty);
+  rpc OutcomeEx (stream Entity) returns (Entity);
+  rpc Duplex (stream Entity) returns (stream Entity);
+  rpc Income (google.protobuf.Empty) returns (stream Entity);
+  rpc IncomeEx (Entity) returns (stream Entity);
+}
